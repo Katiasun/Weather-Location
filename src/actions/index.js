@@ -1,8 +1,6 @@
 import axios from "axios";
 
 // Actions for events
-const api_key = "dbdffcbb48362b084c7774b1fa09353f";
-const base_url = "";
 
 export const setEvents = (events) => {
   return {
@@ -26,7 +24,7 @@ export const fetchEvents = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q={city}&appid=dbdffcbb48362b084c7774b1fa09353f`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dbdffcbb48362b084c7774b1fa09353f`
       );
       dispatch(setEvents(response.data));
     } catch (error) {
@@ -35,10 +33,12 @@ export const fetchEvents = () => {
   };
 };
 
-export const fetchWeather = () => {
+export const fetchWeather = (city) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://api.weatherstack.com/current");
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dbdffcbb48362b084c7774b1fa09353f`
+      );
       dispatch(setWeather(response.data));
     } catch (error) {
       console.error("Error fetching weather:", error);
