@@ -1,6 +1,8 @@
 import axios from "axios";
 
 // Actions for events
+const api_key = "dbdffcbb48362b084c7774b1fa09353f";
+const base_url = "";
 
 export const setEvents = (events) => {
   return {
@@ -11,10 +13,10 @@ export const setEvents = (events) => {
 
 // Actions for weather
 
-export const setWeather = (weather) => {
+export const setWeather = (weatherData) => {
   return {
     type: "SET_WEATHER",
-    payload: weather,
+    payload: weatherData,
   };
 };
 
@@ -23,7 +25,9 @@ export const setWeather = (weather) => {
 export const fetchEvents = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("https://api.eventbrite.com/v3/events");
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q={city}&appid=dbdffcbb48362b084c7774b1fa09353f`
+      );
       dispatch(setEvents(response.data));
     } catch (error) {
       console.error("Error fetching events:", error);
