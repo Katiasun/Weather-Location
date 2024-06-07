@@ -24,7 +24,7 @@ export const fetchEvents = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dbdffcbb48362b084c7774b1fa09353f`
+        `https://api.openweathermap.org/data/2.5/weather?q={city}&appid=dbdffcbb48362b084c7774b1fa09353f`
       );
       dispatch(setEvents(response.data));
     } catch (error) {
