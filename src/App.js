@@ -14,7 +14,7 @@ function App() {
             </>} */}
           </Route>
 
-          <Route path="/events" element={<EventList />} />
+          <Route path="/eventList" element={<EventList />} />
         </Routes>
       </Router>
     </div>
