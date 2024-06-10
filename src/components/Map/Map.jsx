@@ -14,9 +14,20 @@ const defaultCenter = {
 
 export default function Map() {
   const [selectedPosition, setSelectedPosition] = useState(null);
+
+  function handleClickPosition(event) {
+    const position = { lat: event.latLng.lat(), lng: event.latLng.lng() };
+    setSelectedPosition(position);
+    onselect(position);
+  }
   return (
     <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
-      <GoogleMap mapContainerStyle={mapStyles} zoom={13} />
+      <GoogleMap
+        mapContainerStyle={mapStyles}
+        zoom={13}
+        center={selectedPosition || defaultCenter}
+        onClick={handleClickPosition}
+      />
     </LoadScript>
   );
 }
