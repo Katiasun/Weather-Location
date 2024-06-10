@@ -12,13 +12,13 @@ const defaultCenter = {
   lng: 2.1734,
 };
 
-export default function Map() {
+export default function Map({ onSelect }) {
   const [selectedPosition, setSelectedPosition] = useState(null);
 
   function handleClickPosition(event) {
     const position = { lat: event.latLng.lat(), lng: event.latLng.lng() };
     setSelectedPosition(position);
-    onselect(position);
+    onSelect(position);
   }
   return (
     <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
@@ -28,6 +28,8 @@ export default function Map() {
         center={selectedPosition || defaultCenter}
         onClick={handleClickPosition}
       />
+      {selectedPosition && <Marker position={selectedPosition} />}
+      <GoogleMap />
     </LoadScript>
   );
 }
