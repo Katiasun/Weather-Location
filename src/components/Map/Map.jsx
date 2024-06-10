@@ -20,6 +20,7 @@ export default function Map({ onSelect }) {
     setSelectedPosition(position);
     onSelect(position);
   }
+
   return (
     <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
       <GoogleMap
