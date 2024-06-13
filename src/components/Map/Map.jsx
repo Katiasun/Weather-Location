@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import styles from "./styles.module.css";
 
 const mapStyles = {
   height: "100vh",
@@ -12,7 +11,7 @@ const defaultCenter = {
   lng: 2.1734,
 };
 
-export default function Map({ onSelect }) {
+export default function Map({ center = defaultCenter, onSelect }) {
   const [selectedPosition, setSelectedPosition] = useState(null);
 
   function handleClickPosition(event) {
@@ -22,11 +21,11 @@ export default function Map({ onSelect }) {
   }
 
   return (
-    <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION}>
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={13}
-        center={selectedPosition || defaultCenter}
+        center={center}
         onClick={handleClickPosition}
       />
       {selectedPosition && <Marker position={selectedPosition} />}
