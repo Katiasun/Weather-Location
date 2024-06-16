@@ -5,11 +5,9 @@ import Map from "./components/Map/Map.jsx";
 
 function App() {
   const [center, setCenter] = useState({ lat: 41.3851, lng: 2.1734 });
-  const [selectedPosition, setSelectedPosition] = useState(null);
 
   function handleSelectLocation(position) {
     setCenter(position);
-    setSelectedPosition(position);
   }
 
   return (
