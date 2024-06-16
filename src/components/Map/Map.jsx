@@ -6,12 +6,7 @@ const mapStyles = {
   width: "100%",
 };
 
-const defaultCenter = {
-  lat: 41.3851,
-  lng: 2.1734,
-};
-
-export default function Map({ center = defaultCenter, onSelect }) {
+export default function Map({ center, onSelect }) {
   const [selectedPosition, setSelectedPosition] = useState(null);
 
   function handleClickPosition(event) {
