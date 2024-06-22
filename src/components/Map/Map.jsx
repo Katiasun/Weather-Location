@@ -9,8 +9,12 @@ const mapStyles = {
 export default function Map({ center, onSelect }) {
   const [selectedPosition, setSelectedPosition] = useState(null);
 
+  // The function of processing clicks on the map
   function handleClickPosition(event) {
-    const position = { lat: event.latLng.lat(), lng: event.latLng.lng() };
+    const position = {
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    };
     setSelectedPosition(position);
     onSelect(position);
   }
@@ -19,7 +23,7 @@ export default function Map({ center, onSelect }) {
     <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION}>
       <GoogleMap
         mapContainerStyle={mapStyles}
-        zoom={13}
+        zoom={12}
         center={center}
         onClick={handleClickPosition}
       />
