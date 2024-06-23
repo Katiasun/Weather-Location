@@ -11,20 +11,28 @@ export default function SearchBar({ onSelectLocation }) {
     clearSuggestions,
   } = usePlacesAutocomplete();
 
-  const handleSelect = async (address) => {
+  async function handleSelect(address) {
     setValue(address.label, false);
     clearSuggestions();
 
-    return (
-      <div className={styles.searchBar}>
-        <GooglePlacesAutocomplete
-          selectProps={{
-            value,
-            onChange: handleSelect,
-            onInputChange: () => setValue(inputValue),
-          }}
-        ></GooglePlacesAutocomplete>
-      </div>
-    );
-  };
+    try {
+      const results = await getGeocode({ address: address.label });
+      const { lat, lng } = await getLatLng(results[0]);
+      onSelectLocation({ lat, lng });
+    } catch (error) {
+      console.log("Error: " + error);
+    }
+  }
+
+  return (
+    <div className={styles.searchBar}>
+      <GooglePlacesAutocomplete
+        selectProps={{
+          value,
+          onChange: handleSelect,
+          onInputChange: () => setValue(inputValue),
+        }}
+      ></GooglePlacesAutocomplete>
+    </div>
+  );
 }
