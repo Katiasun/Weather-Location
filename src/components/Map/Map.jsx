@@ -20,15 +20,13 @@ export default function Map({ center, onSelect }) {
   }
 
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION}>
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        zoom={12}
-        center={center}
-        onClick={handleClickPosition}
-      />
+    <GoogleMap
+      mapContainerStyle={mapStyles}
+      zoom={12}
+      center={center}
+      onClick={handleClickPosition}
+    >
       {selectedPosition && <Marker position={selectedPosition} />}
-      <GoogleMap />
-    </LoadScript>
+    </GoogleMap>
   );
 }
