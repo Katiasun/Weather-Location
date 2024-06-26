@@ -12,16 +12,21 @@ export default function SearchBar({ onSelectLocation }) {
   } = usePlacesAutocomplete();
 
   async function handleSelect(address) {
-    setValue(address.label, false);
-    clearSuggestions();
+    setValue(address.label, false); // Set the input value and prevent further suggestions
+    clearSuggestions(); // Clear the suggestions list
 
     try {
-      const results = await getGeocode({ address: address.label });
-      const { lat, lng } = await getLatLng(results[0]);
-      onSelectLocation({ lat, lng });
+      const results = await getGeocode({ address: address.label }); // Get geocode results for the address
+      const { lat, lng } = await getLatLng(results[0]); // Extract latitude and longitude
+      onSelectLocation({ lat, lng }); // Pass the coordinates to the parent component
     } catch (error) {
-      console.log("Error: " + error);
+      console.log("Error: " + error); // Log any errors
     }
+  }
+
+  //Handles input change in the autocomplete input
+  function handleInputChange(inputValue) {
+    setValue(inputValue); // Set the input value for the autocomplete
   }
 
   return (
@@ -30,7 +35,8 @@ export default function SearchBar({ onSelectLocation }) {
         selectProps={{
           value,
           onChange: handleSelect,
-          onInputChange: () => setValue(inputValue),
+          onInputChange: handleInputChange,
+          inputValue: value,
         }}
       ></GooglePlacesAutocomplete>
     </div>
