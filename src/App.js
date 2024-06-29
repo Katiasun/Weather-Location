@@ -5,15 +5,18 @@ import Map from "./components/Map/Map.jsx";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import { LoadScript } from "@react-google-maps/api";
 
+const libraries = ["places"];
+
 function App() {
   const [center, setCenter] = useState({ lat: 41.3851, lng: 2.1734 });
 
+  // A function to update the center of the map when selecting a new location
   function handleSelectLocation(position) {
     setCenter(position);
   }
 
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION}>
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION} libraries={libraries}>
       <div className="App">
         <Router>
           <Routes>
