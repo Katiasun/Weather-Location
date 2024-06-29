@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 
 const mapStyles = {
   height: "100vh",
@@ -9,7 +9,7 @@ const mapStyles = {
 export default function Map({ center, onSelect }) {
   const [selectedPosition, setSelectedPosition] = useState(null);
 
-  // The function of processing clicks on the map
+  // The function of processing clicks on the map to set the selected position
   function handleClickPosition(event) {
     const position = {
       lat: event.latLng.lat(),

@@ -11,6 +11,7 @@ export default function SearchBar({ onSelectLocation }) {
     clearSuggestions,
   } = usePlacesAutocomplete();
 
+  // Address selection processing function to get the geocode and call onSelectLocation
   async function handleSelect(address) {
     setValue(address.label, false); // Set the input value and prevent further suggestions
     clearSuggestions(); // Clear the suggestions list
@@ -24,19 +25,13 @@ export default function SearchBar({ onSelectLocation }) {
     }
   }
 
-  //Handles input change in the autocomplete input
-  function handleInputChange(inputValue) {
-    setValue(inputValue); // Set the input value for the autocomplete
-  }
-
   return (
     <div className={styles.searchBar}>
       <GooglePlacesAutocomplete
         selectProps={{
           value,
           onChange: handleSelect,
-          onInputChange: handleInputChange,
-          inputValue: value,
+          onInputChange: (inputValue) => setValue(inputValue),
         }}
       ></GooglePlacesAutocomplete>
     </div>
