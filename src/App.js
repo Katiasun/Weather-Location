@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Map from "./components/Map/Map.jsx";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
+import WeatherInfo from "./components/WeatherInfo/WeatherInfo.jsx";
 import { LoadScript } from "@react-google-maps/api";
 
 const libraries = ["places"];
