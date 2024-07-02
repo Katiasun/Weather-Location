@@ -17,6 +17,13 @@ function App() {
     setCenter(position);
   }
 
+
+  async function fetchWeather({ lat, lng }) {
+    try { }
+    catch (error) {
+      console.error("Error fetching weather data: ", error);
+    }
+  }
   return (
     <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION} libraries={libraries}>
       <div className="App">
