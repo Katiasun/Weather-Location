@@ -15,12 +15,17 @@ function App() {
   // A function to update the center of the map when selecting a new location
   function handleSelectLocation(position) {
     setCenter(position);
+    fetchWeather(position);
   }
 
-
   async function fetchWeather({ lat, lng }) {
-    try { }
-    catch (error) {
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_WEATHER_API_KEY_LOCATION}`
+      );
+      const data = await response.json();
+      setWeather(data);
+    } catch (error) {
       console.error("Error fetching weather data: ", error);
     }
   }
