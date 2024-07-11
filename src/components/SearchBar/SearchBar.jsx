@@ -27,13 +27,17 @@ export default function SearchBar({ onSelectLocation }) {
 
   return (
     <div className={styles.searchBar}>
-      <GooglePlacesAutocomplete
-        selectProps={{
-          value,
-          onChange: handleSelect,
-          onInputChange: (inputValue) => setValue(inputValue),
-        }}
-      ></GooglePlacesAutocomplete>
+      {ready && (
+        <GooglePlacesAutocomplete
+          selectProps={{
+            value,
+            onChange: handleSelect,
+            onInputChange: (inputValue) => setValue(inputValue),
+            isClearable: true,
+          }}
+        ></GooglePlacesAutocomplete>
+      )}
+      {!ready && <div>Loading...</div>}
     </div>
   );
 }
