@@ -9,7 +9,7 @@ import { LoadScript } from "@react-google-maps/api";
 const libraries = ["places"];
 
 function App() {
-  const [center, setCenter] = useState({ lat: 41.3851, lng: 2.1734 });
+  const [center, setCenter] = useState({ lat: 50.4501, lng: 30.5234 });
   const [weather, setWeather] = useState(null);
 
   // A function to update the center of the map when selecting a new location
@@ -21,7 +21,7 @@ function App() {
   async function fetchWeather({ lat, lng }) {
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_WEATHER_API_KEY_LOCATION}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_WEATHER_API_KEY_LOCATION}&units=metric`
       );
       const data = await response.json();
       setWeather(data);
