@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Map from "./components/Map/Map.jsx";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import WeatherInfo from "./components/WeatherInfo/WeatherInfo.jsx";
+import HistoryPanel from "./components/HistoryPanel/HistoryPanel.jsx";
 import { LoadScript } from "@react-google-maps/api";
 
 const libraries = ["places"];
