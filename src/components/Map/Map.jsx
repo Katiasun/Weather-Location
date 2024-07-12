@@ -6,13 +6,6 @@ const mapStyles = {
   width: "100%",
 };
 
-const defaultBounds = {
-  north: 50.0,
-  south: 40.0,
-  east: 40.0,
-  west: 30.0,
-};
-
 export default function Map({ center, onSelect }) {
   const [selectedPosition, setSelectedPosition] = useState(null);
 
@@ -29,9 +22,26 @@ export default function Map({ center, onSelect }) {
   return (
     <GoogleMap
       mapContainerStyle={mapStyles}
-      zoom={12}
+      zoom={6}
       center={center}
       onClick={handleClickPosition}
+      options={{
+        disableDefaultUI: true,
+        dragggable: true,
+        gestureHandling: "greedy",
+        mapTypeControl: true,
+        minZoom: 3,
+        maxZoom: 10,
+        restriction: {
+          latLngBounds: {
+            north: 85,
+            south: -85,
+            east: 180,
+            west: -180,
+          },
+        },
+        strictBounds: true,
+      }}
     >
       {selectedPosition && <Marker position={selectedPosition} />}
     </GoogleMap>
