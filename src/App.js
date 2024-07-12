@@ -12,6 +12,7 @@ const libraries = ["places"];
 function App() {
   const [center, setCenter] = useState({ lat: 50.4501, lng: 30.5234 });
   const [weather, setWeather] = useState(null);
+  const [history, setHistory] = useState([]);
 
   // A function to update the center of the map when selecting a new location
   function handleSelectLocation(position) {
