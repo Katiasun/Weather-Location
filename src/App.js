@@ -20,6 +20,11 @@ function App() {
     fetchWeather(position);
   }
 
+  function updateHistory(position) {
+    const newHistory = [position, ...history];
+    setHistory(newHistory);
+  }
+
   async function fetchWeather({ lat, lng }) {
     try {
       const response = await fetch(
