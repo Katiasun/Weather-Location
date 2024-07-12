@@ -6,6 +6,13 @@ const mapStyles = {
   width: "100%",
 };
 
+const defaultBounds = {
+  north: 50.0,
+  south: 40.0,
+  east: 40.0,
+  west: 30.0,
+};
+
 export default function Map({ center, onSelect }) {
   const [selectedPosition, setSelectedPosition] = useState(null);
 
