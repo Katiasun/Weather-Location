@@ -48,6 +48,7 @@ function App() {
                   <SearchBar onSelectLocation={handleSelectLocation} />
                   <Map center={center} onSelect={handleSelectLocation} />
                   {weather && <WeatherInfo weather={weather} />}
+                  <HistoryPanel history={history} />
                 </>
               }
             />
