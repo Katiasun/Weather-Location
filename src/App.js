@@ -15,13 +15,15 @@ function App() {
   const [history, setHistory] = useState([]);
 
   // A function to update the center of the map when selecting a new location
-  function handleSelectLocation(position) {
+  function handleSelectLocation(position, label) {
     setCenter(position);
     fetchWeather(position);
+    updateHistory(position, label);
   }
 
-  function updateHistory(position) {
-    const newHistory = [position, ...history];
+  function updateHistory(position, label) {
+    const newHistoryItem = { ...position, label };
+    const newHistory = [newHistoryItem, ...history];
     setHistory(newHistory);
   }
 

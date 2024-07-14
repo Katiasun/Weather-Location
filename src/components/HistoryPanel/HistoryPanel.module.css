@@ -1,6 +1,6 @@
 .historyPanel {
   position: absolute;
-  top: 10px;
+  top: 40px;
   right: 10px;
   width: 300px;
   background-color: #fff;
@@ -23,6 +23,7 @@
 .historyItem {
   padding: 5px 0;
   border-bottom: 1px solid #eee;
+  color: black;
 }
 .historyItem:last-child {
   border-bottom: none;
