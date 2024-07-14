@@ -19,7 +19,7 @@ export default function SearchBar({ onSelectLocation }) {
     try {
       const results = await getGeocode({ address: address.label }); // Get geocode results for the address
       const { lat, lng } = await getLatLng(results[0]); // Extract latitude and longitude
-      onSelectLocation({ lat, lng }); // Pass the coordinates to the parent component
+      onSelectLocation({ lat, lng }, address.label); // Pass the coordinates to the parent component
     } catch (error) {
       console.log("Error: " + error); // Log any errors
     }
