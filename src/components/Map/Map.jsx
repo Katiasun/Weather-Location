@@ -7,6 +7,10 @@ const mapStyles = {
   width: "100%",
 };
 
+const markerStyles = {
+  zIndex: 10, // Set a high z-index for the marker
+};
+
 export default function Map({ center, onSelect }) {
   const [selectedPosition, setSelectedPosition] = useState(null);
   const [weather, setWeather] = useState(null);
@@ -44,7 +48,7 @@ export default function Map({ center, onSelect }) {
         gestureHandling: "greedy",
         mapTypeControl: true,
         minZoom: 3,
-        maxZoom: 10,
+        maxZoom: 12,
         restriction: {
           latLngBounds: {
             north: 85,
@@ -56,7 +60,9 @@ export default function Map({ center, onSelect }) {
         strictBounds: true,
       }}
     >
-      {selectedPosition && <Marker position={selectedPosition} />}
+      {selectedPosition && (
+        <Marker position={selectedPosition} options={{ styles: markerStyles }} />
+      )}
       {selectedPosition && weather && (
         <WeatherTooltip
           position={selectedPosition}

@@ -15,7 +15,6 @@ function App() {
   // A function to update the center of the map when selecting a new location
   function handleSelectLocation(position, label = null) {
     setCenter(position); // Update the center of the map
-    // fetchWeather(position); // Call the function to get the weather
     if (label) {
       updateHistory(position, label); // Add to history only if there is a label
     }
