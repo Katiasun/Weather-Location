@@ -1,8 +1,8 @@
 import React from "react";
 import { InfoWindow } from "@react-google-maps/api";
-import styles from "./WeatherToolyipple.css";
+import styles from "./WeatherTooltip.module.css";
 
-export default function WeatherToolyipple({ position, weather, onClose }) {
+export default function WeatherTooltip({ position, weather, onClose }) {
   return (
     <InfoWindow position={position} onCloseClick={onClose}>
       <div className={styles.weatherTooltip}>
