@@ -15,16 +15,18 @@ function App() {
   const [history, setHistory] = useState([]);
 
   // A function to update the center of the map when selecting a new location
-  function handleSelectLocation(position, label) {
-    setCenter(position);
-    fetchWeather(position);
-    updateHistory(position, label);
+  function handleSelectLocation(position, label = null) {
+    setCenter(position); // Update the center of the map
+    fetchWeather(position); // Call the function to get the weather
+    if (label) {
+      updateHistory(position, label); // Add to history only if there is a label
+    }
   }
 
   function updateHistory(position, label) {
-    const newHistoryItem = { ...position, label };
-    const newHistory = [newHistoryItem, ...history];
-    setHistory(newHistory);
+    const newHistoryItem = { ...position, label }; // Create a new story element
+    const newHistory = [newHistoryItem, ...history]; // Add a new element to the beginning of the story
+    setHistory(newHistory); // Update the history state
   }
 
   async function fetchWeather({ lat, lng }) {
