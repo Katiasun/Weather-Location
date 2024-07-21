@@ -33,6 +33,11 @@ function App() {
     setHistory(newHistory); // Update the history state
   }
 
+  function deleteHistory(element) {
+    const newHistory = history.filter((_, el) => el !== element);
+    setHistory(newHistory); // Update the history state
+  }
+
   // Handle clicks on the map to set the selected position and request the weather
   async function fetchWeather({ lat, lng }) {
     if (!lat || !lng) return;
@@ -65,7 +70,7 @@ function App() {
                     setSelectedPosition={setSelectedPosition}
                     weather={weather}
                   />
-                  <HistoryPanel history={history} />
+                  <HistoryPanel history={history} onDelete={deleteHistory} />
                 </>
               }
             />
