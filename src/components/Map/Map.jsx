@@ -1,38 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import WeatherTooltip from "../WeatherTooltip/WeatherTooltip";
+import { getGeocode } from "use-places-autocomplete";
 
 const mapStyles = {
   height: "100vh",
   width: "100%",
 };
 
-const markerStyles = {
-  zIndex: 10, // Set a high z-index for the marker
-};
+export default function Map({ center, onSelect, selectedPosition, setSelectedPosition, weather }) {
+  const mapRef = React.useRef(null);
 
-export default function Map({ center, onSelect }) {
-  const [selectedPosition, setSelectedPosition] = useState(null);
-  const [weather, setWeather] = useState(null);
+  useEffect(() => {
+    // Center the map at the new coordinates
+    if (selectedPosition && mapRef.current) {
+      mapRef.current.panTo(selectedPosition);
+    }
+  }, [selectedPosition]);
 
-  // Handle clicks on the map to set the selected position and request the weather
   async function handleClickPosition(event) {
     const position = {
       lat: event.latLng.lat(),
       lng: event.latLng.lng(),
     };
-    setSelectedPosition(position);
-    onSelect(position);
 
-    // Query the weather for the selected position
     try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${position.lat}&lon=${position.lng}&appid=${process.env.REACT_APP_WEATHER_API_KEY_LOCATION}&units=metric`
-      );
-      const data = await response.json();
-      setWeather(data);
+      const results = await getGeocode({ location: position });
+      const cityResult = results.find((result) => result.types.includes("locality"));
+      let city = null;
+      if (cityResult) {
+        city = cityResult.address_components.find((component) =>
+          component.types.includes("locality")
+        )?.long_name;
+      }
+
+      if (!city) {
+        city = results
+          .find((result) => result.types.includes("administrative_area_level_1"))
+          ?.address_components.find((component) =>
+            component.types.includes("administrative_area_level_1")
+          )?.long_name;
+      }
+
+      onSelect(position, city || "Unknown city");
     } catch (error) {
-      console.error("Error fetching weather data: ", error);
+      console.error("Error getting address", error);
+      onSelect(position, "Unknown error");
     }
   }
 
@@ -59,10 +72,9 @@ export default function Map({ center, onSelect }) {
         },
         strictBounds: true,
       }}
+      onLoad={(map) => (mapRef.current = map)}
     >
-      {selectedPosition && (
-        <Marker position={selectedPosition} options={{ styles: markerStyles }} />
-      )}
+      {selectedPosition && <Marker position={selectedPosition} />}
       {selectedPosition && weather && (
         <WeatherTooltip
           position={selectedPosition}
