@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { InfoWindow } from "@react-google-maps/api";
 import styles from "./WeatherTooltip.module.css";
 
