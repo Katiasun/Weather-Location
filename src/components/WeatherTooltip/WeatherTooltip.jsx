@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { InfoWindow } from "@react-google-maps/api";
 import styles from "./WeatherTooltip.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleChevronDown, faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function WeatherTooltip({ position, weather, onClose }) {
   const [showDetails, setShowDetails] = useState(false);
@@ -52,8 +54,11 @@ export default function WeatherTooltip({ position, weather, onClose }) {
           <span className={styles.weatherLabel}>Condition: </span>
           {weather.weather[0].description}
         </p>
-        <button onClick={toggleDetails} className={styles.ellipsisBtn}>
-          ...
+        <button onClick={toggleDetails} className={styles.detailsButton}>
+          <FontAwesomeIcon icon={showDetails ? faChevronUp : faChevronDown} />
+          <span className={styles.detailsBtnTitle}>
+            {showDetails ? "Hide Details" : "Show Details"}
+          </span>
         </button>
         {showDetails && (
           <div className={styles.weatherDetails}>
