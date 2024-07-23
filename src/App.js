@@ -70,7 +70,11 @@ function App() {
                     setSelectedPosition={setSelectedPosition}
                     weather={weather}
                   />
-                  <HistoryPanel history={history} onDelete={deleteHistory} />
+                  <HistoryPanel
+                    history={history}
+                    onDelete={deleteHistory}
+                    onSelect={handleSelectLocation}
+                  />
                 </>
               }
             />
