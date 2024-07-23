@@ -17,8 +17,18 @@
 .weatherLabel {
   font-weight: bold;
 }
-.ellipsisBtn {
+.detailsButton {
   background: none;
   border: none;
-  font-size: 1.7rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #5f6368;
+}
+.detailsBtnTitle {
+  margin-left: 5px;
+}
+.detailsBtnTitle:hover {
+  columns: #000;
 }
