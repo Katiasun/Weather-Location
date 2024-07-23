@@ -3,6 +3,8 @@ import { InfoWindow } from "@react-google-maps/api";
 import styles from "./WeatherTooltip.module.css";
 
 export default function WeatherTooltip({ position, weather, onClose }) {
+  const [showDetails, setShowDetails] = useState(false);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       const closeButton = document.querySelector(".gm-ui-hover-effect");
@@ -19,6 +21,15 @@ export default function WeatherTooltip({ position, weather, onClose }) {
       }
     }, 100);
   }, []);
+
+  function toggleDetails() {
+    setShowDetails(!showDetails);
+  }
+
+  function showSunTime(timestap) {
+    const data = new Date(timestap * 1000);
+    return data.toLocaleTimeString();
+  }
 
   return (
     <InfoWindow
@@ -41,6 +52,33 @@ export default function WeatherTooltip({ position, weather, onClose }) {
           <span className={styles.weatherLabel}>Condition: </span>
           {weather.weather[0].description}
         </p>
+        <button onClick={toggleDetails} className={styles.ellipsisBtn}>
+          ...
+        </button>
+        {showDetails && (
+          <div className={styles.weatherDetails}>
+            <p className={styles.weatherDetail}>
+              <span className={styles.weatherLabel}>Sunrise: </span>
+              {showSunTime(weather.sys.sunrise)}
+            </p>
+            <p className={styles.weatherDetail}>
+              <span className={styles.weatherLabel}>Sunset: </span>
+              {showSunTime(weather.sys.sunset)}
+            </p>
+            <p className={styles.weatherDetail}>
+              <span className={styles.weatherLabel}>Humidity: </span>
+              {weather.main.humidity}%
+            </p>
+            <p className={styles.weatherDetail}>
+              <span className={styles.weatherLabel}>Wind Speed: </span>
+              {weather.wind.speed} m/s
+            </p>
+            <p className={styles.weatherDetail}>
+              <span className={styles.weatherLabel}>Feels Like: </span>
+              {weather.main.feels_like}°C
+            </p>
+          </div>
+        )}
       </div>
     </InfoWindow>
   );
