@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Map from "./components/Map/Map.jsx";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import HistoryPanel from "./components/HistoryPanel/HistoryPanel.jsx";
+import WeatherForecast from "./components/WeatherForecast/WeatherForecast.jsx";
 import { LoadScript } from "@react-google-maps/api";
 
 const libraries = ["places"];
@@ -13,6 +14,7 @@ function App() {
   const [history, setHistory] = useState([]);
   const [selectedPosition, setSelectedPosition] = useState(null);
   const [weather, setWeather] = useState(null);
+  const [forecast, setForecast] = useState([]); //add State for WeatherForecast
 
   // A function to update the center of the map when selecting a new location
   function handleSelectLocation(position, label = null) {
