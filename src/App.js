@@ -21,7 +21,8 @@ function App() {
     setCenter(position); // Update the center of the map
     setSelectedPosition(position); // Update the selected position state
     if (position) {
-      fetchWeather(position); // Update the weather
+      fetchWeather(position); // Request the current weather for the selected position
+      fetchForecast(position); // Request the weather forecast for the selected position
     }
 
     if (label) {
@@ -55,6 +56,21 @@ function App() {
     }
   }
 
+  async function fetchForecast({ lat, lng }) {
+    if (!lat || !lng) return;
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_WEATHER_API_KEY_LOCATION}&units=metric`
+      );
+
+      const data = await response.json();
+      const forecastData = data.list.filter((_, index) => index % 8 === 0);
+      setForecast(forecastData);
+    } catch (error) {
+      console.log("Error getching weatherforecast data: ", error);
+    }
+  }
+
   return (
     <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION} libraries={libraries}>
       <div className="App">
@@ -77,6 +93,7 @@ function App() {
                     onDelete={deleteHistory}
                     onSelect={handleSelectLocation}
                   />
+                  {forecast.length > 0 && <WeatherForecast forecast={forecast} />}
                 </>
               }
             />
