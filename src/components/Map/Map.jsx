@@ -51,38 +51,40 @@ export default function Map({ center, onSelect, selectedPosition, setSelectedPos
   }
 
   return (
-    <GoogleMap
-      mapContainerStyle={mapStyles}
-      zoom={6}
-      center={center}
-      onClick={handleClickPosition}
-      options={{
-        disableDefaultUI: true,
-        dragggable: true,
-        gestureHandling: "greedy",
-        mapTypeControl: true,
-        minZoom: 3,
-        maxZoom: 12,
-        restriction: {
-          latLngBounds: {
-            north: 85,
-            south: -85,
-            east: 180,
-            west: -180,
+    <div className={styles.mapContainer}>
+      <GoogleMap
+        mapContainerStyle={mapStyles}
+        zoom={6}
+        center={center}
+        onClick={handleClickPosition}
+        options={{
+          disableDefaultUI: true,
+          dragggable: true,
+          gestureHandling: "greedy",
+          mapTypeControl: true,
+          minZoom: 3,
+          maxZoom: 12,
+          restriction: {
+            latLngBounds: {
+              north: 85,
+              south: -85,
+              east: 180,
+              west: -180,
+            },
           },
-        },
-        strictBounds: true,
-      }}
-      onLoad={(map) => (mapRef.current = map)}
-    >
-      {selectedPosition && <Marker position={selectedPosition} />}
-      {selectedPosition && weather && (
-        <WeatherTooltip
-          position={selectedPosition}
-          weather={weather}
-          onClose={() => setSelectedPosition(null)} // Close tooltip
-        />
-      )}
-    </GoogleMap>
+          strictBounds: true,
+        }}
+        onLoad={(map) => (mapRef.current = map)}
+      >
+        {selectedPosition && <Marker position={selectedPosition} />}
+        {selectedPosition && weather && (
+          <WeatherTooltip
+            position={selectedPosition}
+            weather={weather}
+            onClose={() => setSelectedPosition(null)} // Close tooltip
+          />
+        )}
+      </GoogleMap>
+    </div>
   );
 }
