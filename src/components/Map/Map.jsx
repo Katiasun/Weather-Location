@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import WeatherTooltip from "../WeatherTooltip/WeatherTooltip";
 import { getGeocode } from "use-places-autocomplete";
+import styles from "./Map.module.css";
 
 const mapStyles = {
   height: "100vh",
