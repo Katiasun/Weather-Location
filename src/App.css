@@ -6,3 +6,20 @@
 .App {
   position: relative;
 }
+.showAndHideBtn {
+  position: absolute;
+  top: 41px;
+  right: 0;
+  background-color: #106dd8f1;
+  color: rgb(252, 245, 242);
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 10px;
+}
+.showAndHideBtn:hover {
+  background-color: #0056b3;
+}
