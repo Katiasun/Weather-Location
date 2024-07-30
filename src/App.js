@@ -9,6 +9,12 @@ import { LoadScript } from "@react-google-maps/api";
 
 const libraries = ["places"];
 
+// Function to determine browser language and set default to 'en' if undefined
+function getBrowserLanguage() {
+  const language = navigator.language || navigator.language[0] || "en";
+  return language.split("-")[0]; //Extract language code (e.g., "en" from "en-use")
+}
+
 function App() {
   const [center, setCenter] = useState({ lat: 50.4501, lng: 30.5234 });
   const [history, setHistory] = useState([]);
@@ -83,7 +89,11 @@ function App() {
   }
 
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION} libraries={libraries}>
+    <LoadScript
+      googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION}
+      libraries={libraries}
+      language={getBrowserLanguage}
+    >
       <div className="App">
         <Router>
           <Routes>
