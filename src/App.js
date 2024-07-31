@@ -92,7 +92,7 @@ function App() {
     <LoadScript
       googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION}
       libraries={libraries}
-      language={getBrowserLanguage}
+      language={getBrowserLanguage()} //call the function here
     >
       <div className="App">
         <Router>

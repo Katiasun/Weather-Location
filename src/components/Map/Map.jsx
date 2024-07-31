@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import WeatherTooltip from "../WeatherTooltip/WeatherTooltip";
 import { getGeocode } from "use-places-autocomplete";
@@ -51,40 +51,38 @@ export default function Map({ center, onSelect, selectedPosition, setSelectedPos
   }
 
   return (
-    <div className={styles.mapContainer}>
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        zoom={6}
-        center={center}
-        onClick={handleClickPosition}
-        options={{
-          disableDefaultUI: true,
-          dragggable: true,
-          gestureHandling: "greedy",
-          mapTypeControl: true,
-          minZoom: 3,
-          maxZoom: 12,
-          restriction: {
-            latLngBounds: {
-              north: 85,
-              south: -85,
-              east: 180,
-              west: -180,
-            },
+    <GoogleMap
+      mapContainerStyle={mapStyles}
+      zoom={6}
+      center={center}
+      onClick={handleClickPosition}
+      options={{
+        disableDefaultUI: true,
+        dragggable: true,
+        gestureHandling: "greedy",
+        mapTypeControl: true,
+        minZoom: 3,
+        maxZoom: 12,
+        restriction: {
+          latLngBounds: {
+            north: 85,
+            south: -85,
+            east: 180,
+            west: -180,
           },
-          strictBounds: true,
-        }}
-        onLoad={(map) => (mapRef.current = map)}
-      >
-        {selectedPosition && <Marker position={selectedPosition} />}
-        {selectedPosition && weather && (
-          <WeatherTooltip
-            position={selectedPosition}
-            weather={weather}
-            onClose={() => setSelectedPosition(null)} // Close tooltip
-          />
-        )}
-      </GoogleMap>
-    </div>
+        },
+        strictBounds: true,
+      }}
+      onLoad={(map) => (mapRef.current = map)}
+    >
+      {selectedPosition && <Marker position={selectedPosition} />}
+      {selectedPosition && weather && (
+        <WeatherTooltip
+          position={selectedPosition}
+          weather={weather}
+          onClose={() => setSelectedPosition(null)} // Close tooltip
+        />
+      )}
+    </GoogleMap>
   );
 }
