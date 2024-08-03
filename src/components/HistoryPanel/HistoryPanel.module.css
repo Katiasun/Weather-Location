@@ -1,7 +1,7 @@
 .historyPanel {
   position: absolute;
-  top: 10%;
-  right: 10px;
+  top: 16%;
+  right: 1px;
   width: 300px;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -41,4 +41,11 @@
 }
 .historyItem:last-child {
   border-bottom: none;
+}
+
+@media only screen and (min-width: 720px) {
+  .historyPanel {
+    top: 5%;
+    /* right: 5%; */
+  }
 }
