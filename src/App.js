@@ -22,6 +22,7 @@ function App() {
   const [selectedPosition, setSelectedPosition] = useState(null);
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]); //add State for WeatherForecast
+  const [isForecastVisible, setIsForecastVisible] = useState(false); // Add state for visibility of WeatherForecast
 
   // A function to update the center of the map when selecting a new location
   function handleSelectLocation(position, label = null) {
@@ -101,6 +102,11 @@ function App() {
               path="/"
               element={
                 <>
+                  <div className="layoutForecast">
+                    {isForecastVisible && forecast.length > 0 && (
+                      <WeatherForecast forecast={forecast} />
+                    )}
+                  </div>
                   <SearchBar onSelectLocation={handleSelectLocation} />
                   <Map
                     center={center}
@@ -109,12 +115,21 @@ function App() {
                     setSelectedPosition={setSelectedPosition}
                     weather={weather}
                   />
-                  <button
-                    className="showAndHideBtn"
-                    onClick={() => setIsHistoryVisible(!isHistoryVisible)}
-                  >
-                    {isHistoryVisible ? "Hide History" : "Show History"}
-                  </button>
+                  <div className="controlsBtnShow">
+                    <button
+                      className="showAndHideHistory"
+                      onClick={() => setIsHistoryVisible(!isHistoryVisible)}
+                    >
+                      {isHistoryVisible ? "Hide History" : "Show History"}
+                    </button>
+                    <button
+                      className="showAndHidForecast"
+                      onClick={() => setIsForecastVisible(!isForecastVisible)}
+                    >
+                      {isForecastVisible ? "Hide Forecast" : "Show Forecast"}
+                    </button>
+                  </div>
+
                   {isHistoryVisible && (
                     <HistoryPanel
                       history={history}
@@ -122,7 +137,9 @@ function App() {
                       onSelect={handleSelectLocation}
                     />
                   )}
-                  {forecast.length > 0 && <WeatherForecast forecast={forecast} />}
+                  {/* {isForecastVisible && forecast.length > 0 && (
+                    <WeatherForecast forecast={forecast} />
+                  )} */}
                 </>
               }
             />
