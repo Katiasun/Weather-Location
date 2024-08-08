@@ -1,13 +1,28 @@
-.historyPanel {
+#showHide {
   position: absolute;
   top: 16%;
-  right: 1px;
+  right: 2px;
   width: 300px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
+
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-100%);
+}
+#showHide.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+#showHide.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 .historyTitle {
   font-size: 20px;
@@ -44,8 +59,8 @@
 }
 
 @media only screen and (min-width: 720px) {
-  .historyPanel {
-    top: 5%;
+  #showHide {
+    top: 14%;
     /* right: 5%; */
   }
 }

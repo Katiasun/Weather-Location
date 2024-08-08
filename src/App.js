@@ -129,16 +129,19 @@ function App() {
                       {isForecastVisible ? "Hide Forecast" : "Show Forecast"}
                     </button>
                   </div>
-
-                  {isHistoryVisible && (
+                  <HistoryPanel
+                    history={history}
+                    onDelete={deleteHistory}
+                    onSelect={handleSelectLocation}
+                    isVisible={isHistoryVisible}
+                  />
+                  {/* {isHistoryVisible && (
                     <HistoryPanel
                       history={history}
                       onDelete={deleteHistory}
                       onSelect={handleSelectLocation}
+                      isVisible={isHistoryVisible}
                     />
-                  )}
-                  {/* {isForecastVisible && forecast.length > 0 && (
-                    <WeatherForecast forecast={forecast} />
                   )} */}
                 </>
               }
