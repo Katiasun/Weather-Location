@@ -1,4 +1,4 @@
-.weatherForecast {
+.showForecastHide {
   font-family: "Arial", sans-serif;
   margin: 0 auto;
   background: white;
@@ -12,7 +12,23 @@
 
   position: absolute;
   top: 15%;
-  left: 50%;
+  left: 42%;
+
+  /* transform: translateX(-50%); */
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
+.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 .weatherForcastHeader {
   text-align: center;
@@ -23,7 +39,6 @@
 }
 .weatherForecastContent {
   display: flex;
-  /* flex-wrap: wrap; */
   justify-content: space-around;
   padding: 10px;
   flex-direction: column;
@@ -78,10 +93,9 @@
 }
 
 @media only screen and (min-width: 720px) {
-  .weatherForecast {
+  .showForecastHide {
     top: 12%;
     left: 1%;
-    transform: none;
   }
   .weatherForecastContent {
     flex-direction: row;
@@ -89,6 +103,5 @@
   }
   .weatherForecastItem {
     flex: 1 1 21%;
-    /* margin: 8px; */
   }
 }

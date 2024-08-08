@@ -103,9 +103,7 @@ function App() {
               element={
                 <>
                   <div className="layoutForecast">
-                    {isForecastVisible && forecast.length > 0 && (
-                      <WeatherForecast forecast={forecast} />
-                    )}
+                    <WeatherForecast forecast={forecast} isVisible={isForecastVisible} />
                   </div>
                   <SearchBar onSelectLocation={handleSelectLocation} />
                   <Map
@@ -135,14 +133,6 @@ function App() {
                     onSelect={handleSelectLocation}
                     isVisible={isHistoryVisible}
                   />
-                  {/* {isHistoryVisible && (
-                    <HistoryPanel
-                      history={history}
-                      onDelete={deleteHistory}
-                      onSelect={handleSelectLocation}
-                      isVisible={isHistoryVisible}
-                    />
-                  )} */}
                 </>
               }
             />

@@ -23,13 +23,12 @@ const iconMapping = {
   "50n": <WiCloudy />,
 };
 
-export default function WeatherForecast({ forecast }) {
+export default function WeatherForecast({ forecast, isVisible }) {
   return (
-    <div className={styles.weatherForecast}>
+    <div className={`${styles.showForecastHide} ${isVisible ? styles.visible : styles.hidden}`}>
       <div className={styles.weatherForcastHeader}>
-        <h3>Weatherforecast</h3>
+        <h3>Weather Forecast</h3>
       </div>
-
       <div className={styles.weatherForecastContent}>
         {forecast.map((data, index) => (
           <div key={index} className={styles.weatherForecastItem}>
@@ -42,7 +41,6 @@ export default function WeatherForecast({ forecast }) {
                 month: "short",
               })}
             </div>
-            <div className={styles.weatherForecastIcon}>{iconMapping[data.weather[0].icon]}</div>
             <div className={styles.weatherForecastTemper}>
               <span className={styles.tempDay}>{Math.round(data.main.temp_max)}°C</span>
               <span className={styles.tempNight}>{Math.round(data.main.temp_min)}°C</span>
