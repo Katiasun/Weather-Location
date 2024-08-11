@@ -95,9 +95,7 @@
   .showForecastHide {
     top: 12%;
     left: 1%;
-  }
-  .weatherForecastContent {
-    flex-direction: row;
+    width: 15%;
   }
   .weatherForecastItem {
     flex: 1 1 21%;

@@ -80,7 +80,7 @@ function App() {
       const data = await response.json();
       console.log("Weather forecast data:", data); // Перевірте дані
 
-      const forecastData = data.list.filter((_, index) => index % 8 === 0);
+      const forecastData = data.list.filter((item, index) => index % 8 === 0).slice(0, 7);
       console.log("Filtered forecast data:", forecastData); // Перевірте відфільтровані дані
 
       setForecast(forecastData);
