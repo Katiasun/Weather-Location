@@ -12,15 +12,15 @@
   transition: transform 0.6s ease-out, opacity 0.6s ease-out;
   pointer-events: none;
   opacity: 0;
-  transform: translateY(-100%);
+  transform: translateX(100%);
 }
 #showHide.visible {
-  transform: translateY(0);
+  transform: translateX(0);
   opacity: 1;
   pointer-events: auto;
 }
 #showHide.hidden {
-  transform: translateY(-100%);
+  transform: translateX(100%);
   opacity: 0;
   pointer-events: none;
 }
@@ -60,7 +60,7 @@
 
 @media only screen and (min-width: 720px) {
   #showHide {
+    right: 10px;
     top: 14%;
-    /* right: 5%; */
   }
 }
