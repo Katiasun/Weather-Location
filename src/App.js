@@ -89,6 +89,16 @@ function App() {
     }
   }
 
+  function handleToggleHistory() {
+    setIsHistoryVisible(!isHistoryVisible);
+    setIsForecastVisible(false); // Hide WeatherForecast when toggling HistoryPanel
+  }
+
+  function handleToggleForecast() {
+    setIsForecastVisible(!isForecastVisible);
+    setIsHistoryVisible(false); // Hide History when toggling WeatherForecast
+  }
+
   return (
     <LoadScript
       googleMapsApiKey={process.env.REACT_APP_API_KEY_LOCATION}
@@ -114,16 +124,10 @@ function App() {
                     weather={weather}
                   />
                   <div className="controlsBtnShow">
-                    <button
-                      className="showAndHideHistory"
-                      onClick={() => setIsHistoryVisible(!isHistoryVisible)}
-                    >
+                    <button className="showAndHideHistory" onClick={handleToggleHistory}>
                       {isHistoryVisible ? "Hide History" : "Show History"}
                     </button>
-                    <button
-                      className="showAndHidForecast"
-                      onClick={() => setIsForecastVisible(!isForecastVisible)}
-                    >
+                    <button className="showAndHidForecast" onClick={handleToggleForecast}>
                       {isForecastVisible ? "Hide Forecast" : "Show Forecast"}
                     </button>
                   </div>
