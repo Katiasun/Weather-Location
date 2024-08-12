@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import WeatherTooltip from "../WeatherTooltip/WeatherTooltip";
 import { getGeocode } from "use-places-autocomplete";
+// is it used?
 import styles from "./Map.module.css";
 
 const mapStyles = {
@@ -14,6 +15,7 @@ export default function Map({ center, onSelect, selectedPosition, setSelectedPos
 
   useEffect(() => {
     // Center the map at the new coordinates
+    // you already have something similar in App
     if (selectedPosition && mapRef.current) {
       mapRef.current.panTo(selectedPosition);
     }
@@ -38,6 +40,7 @@ export default function Map({ center, onSelect, selectedPosition, setSelectedPos
       if (!city) {
         city = results
           .find((result) => result.types.includes("administrative_area_level_1"))
+          // what is the purpose of this `?`
           ?.address_components.find((component) =>
             component.types.includes("administrative_area_level_1")
           )?.long_name;

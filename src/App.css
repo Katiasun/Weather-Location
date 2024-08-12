@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* better to separate styling blocks with new line */
 .App {
   position: relative;
 }
@@ -14,6 +15,7 @@
   left: 2%;
   top: 11%;
 }
+/* use BEM methodology for class naming */
 .showAndHideHistory,
 .showAndHidForecast {
   background-color: #0b58b1;
@@ -23,6 +25,7 @@
   padding: 10px 11px;
   font-size: 14px;
   cursor: pointer;
+  /* does this work? those classes for buttons? */
   transition: background-color 0.3s ease, transform 0.3s ease;
   text-align: center;
   min-width: 120px;
@@ -34,6 +37,7 @@
 
 @media only screen and (min-width: 720px) {
   .controlsBtnShow {
+    /* why is it in percent? */
     left: 25%;
     top: 5.3%;
   }

@@ -11,11 +11,14 @@ const libraries = ["places"];
 
 // Function to determine browser language and set default to 'en' if undefined
 function getBrowserLanguage() {
+  // move "en" to constant `browserLanguage`
   const language = navigator.language || navigator.language[0] || "en";
   return language.split("-")[0]; //Extract language code (e.g., "en" from "en-use")
 }
 
 function App() {
+  // { lat: 50.4501, lng: 30.5234 } looks like a magic numbers, move to variable
+  // think about better name
   const [center, setCenter] = useState({ lat: 50.4501, lng: 30.5234 });
   const [history, setHistory] = useState([]);
   const [isHistoryVisible, setIsHistoryVisible] = useState(false);
@@ -25,9 +28,12 @@ function App() {
   const [isForecastVisible, setIsForecastVisible] = useState(false); // Add state for visibility of WeatherForecast
 
   // A function to update the center of the map when selecting a new location
+  // 1) better handleLocationSelect
+  // 2) use different function for (Map, Searchbar) and HistoryPanel
   function handleSelectLocation(position, label = null) {
     setCenter(position); // Update the center of the map
     setSelectedPosition(position); // Update the selected position state
+    // what if it will be empty object?
     if (position) {
       fetchWeather(position); // Request the current weather for the selected position
       fetchForecast(position); // Request the weather forecast for the selected position
@@ -50,6 +56,7 @@ function App() {
   }
 
   // Handle clicks on the map to set the selected position and request the weather
+  // let's create a file api.js and move there all api calls. I see you have actions. Why don't you use it?
   async function fetchWeather({ lat, lng }) {
     if (!lat || !lng) return;
     // Query the weather for the selected position
@@ -111,6 +118,7 @@ function App() {
             <Route
               path="/"
               element={
+                // better to move this block to a separate component and name it as MainPage.jsx
                 <>
                   <div className="layoutForecast">
                     <WeatherForecast forecast={forecast} isVisible={isForecastVisible} />

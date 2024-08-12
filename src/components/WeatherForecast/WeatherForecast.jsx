@@ -34,8 +34,10 @@ export default function WeatherForecast({ forecast, isVisible }) {
           const weatherIcon = iconMapping[data.weather[0].icon];
 
           return (
+            // if you move it to a separate component it will be more readable
             <div key={index} className={styles.weatherForecastItem}>
               <div className={styles.weatherForecastDay}>
+                {/* better to move it to a method */}
                 {new Date(data.dt * 1000).toLocaleDateString("en-GB", { weekday: "short" })}
               </div>
               <div className={styles.weatherForecastDate}>
