@@ -6,6 +6,7 @@ export default function SearchBar({ onSelectLocation }) {
   const {
     ready,
     value,
+    // do you use status and data here?
     suggestions: { status, data },
     setValue,
     clearSuggestions,

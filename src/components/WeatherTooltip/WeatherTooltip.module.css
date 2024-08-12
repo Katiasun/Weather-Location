@@ -5,6 +5,7 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   z-index: 5;
 }
+/* usually in classes we use snake case or dash case */
 .weatherTitle {
   margin: 0;
   font-size: 16px;
