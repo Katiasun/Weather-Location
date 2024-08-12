@@ -124,11 +124,11 @@ function App() {
                     weather={weather}
                   />
                   <div className="controlsBtnShow">
-                    <button className="showAndHideHistory" onClick={handleToggleHistory}>
-                      {isHistoryVisible ? "Hide History" : "Show History"}
-                    </button>
                     <button className="showAndHidForecast" onClick={handleToggleForecast}>
                       {isForecastVisible ? "Hide Forecast" : "Show Forecast"}
+                    </button>
+                    <button className="showAndHideHistory" onClick={handleToggleHistory}>
+                      {isHistoryVisible ? "Hide History" : "Show History"}
                     </button>
                   </div>
                   <HistoryPanel
