@@ -14,8 +14,8 @@
   left: 2%;
   top: 11%;
 }
-.showAndHideHistory,
-.showAndHidForecast {
+.controlsBtnShow__showAndHidForecast,
+.controlsBtnShow__showAndHideHistory {
   background-color: #0b58b1;
   color: rgb(252, 245, 242);
   border: none;
