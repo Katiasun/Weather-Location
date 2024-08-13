@@ -17,7 +17,8 @@ function getBrowserLanguage() {
 }
 
 function App() {
-  const [center, setCenter] = useState({ lat: 50.4501, lng: 30.5234 });
+  const initialCenter = { lat: 50.4501, lng: 30.5234 };
+  const [center, setCenter] = useState(initialCenter);
   const [history, setHistory] = useState([]);
   const [isHistoryVisible, setIsHistoryVisible] = useState(false);
   const [selectedPosition, setSelectedPosition] = useState(null);
