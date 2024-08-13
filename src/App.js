@@ -27,15 +27,44 @@ function App() {
   const [isForecastVisible, setIsForecastVisible] = useState(false); // Add state for visibility of WeatherForecast
 
   // A function to update the center of the map when selecting a new location
-  function handleSelectLocation(position, label = null) {
-    setCenter(position); // Update the center of the map
+  async function handleMapAndSearchbarLocationSelect(position) {
+    setCenter(position);
     setSelectedPosition(position); // Update the selected position state
     if (position) {
-      fetchWeather(position); // Request the current weather for the selected position
+      const label = await fetchLocationLabel(position);
+      fetchWeather(position); // Query the weather for the selected position
       fetchForecast(position); // Request the weather forecast for the selected position
+      updateHistory(position, label); // Add to history only if there is a label
     }
+  }
 
-    if (label) {
+  async function fetchLocationLabel(position) {
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.lat},${position.lng}&key=${process.env.REACT_APP_API_KEY_LOCATION}`
+    );
+    const data = await response.json();
+
+    if (data.status === "OK") {
+      const result = data.results[0]; // The first result returned by the API
+      const cityComponent = result.address_components.find(
+        (component) =>
+          component.types.includes("locality") ||
+          component.types.includes("administrative_area_level_1")
+      );
+      return cityComponent ? cityComponent.long_name : "Unknown Location";
+    } else {
+      throw new Error("Failed to fetch location label");
+    }
+  }
+
+  // Function to handle selecting a location from history
+  function handleHistoryLocationSelect(position, label) {
+    setCenter(position);
+    setSelectedPosition(position);
+
+    if (position) {
+      fetchWeather(position); // Query the weather for the selected position
+      fetchForecast(position); // Request the weather forecast for the selected position
       updateHistory(position, label); // Add to history only if there is a label
     }
   }
@@ -117,10 +146,10 @@ function App() {
                   <div className="layoutForecast">
                     <WeatherForecast forecast={forecast} isVisible={isForecastVisible} />
                   </div>
-                  <SearchBar onSelectLocation={handleSelectLocation} />
+                  <SearchBar onSelectLocation={handleMapAndSearchbarLocationSelect} />
                   <Map
                     center={center}
-                    onSelect={handleSelectLocation}
+                    onSelect={handleMapAndSearchbarLocationSelect}
                     selectedPosition={selectedPosition}
                     setSelectedPosition={setSelectedPosition}
                     weather={weather}
@@ -142,7 +171,7 @@ function App() {
                   <HistoryPanel
                     history={history}
                     onDelete={deleteHistory}
-                    onSelect={handleSelectLocation}
+                    onSelect={handleHistoryLocationSelect}
                     isVisible={isHistoryVisible}
                   />
                 </>
