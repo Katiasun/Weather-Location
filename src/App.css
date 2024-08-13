@@ -28,10 +28,6 @@
   min-width: 120px;
 }
 
-.showAndHideBtn:hover {
-  right: 5px;
-}
-
 @media only screen and (min-width: 720px) {
   .controlsBtnShow {
     left: 25%;
