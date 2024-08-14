@@ -1,10 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Map from "./components/Map/Map.jsx";
-import SearchBar from "./components/SearchBar/SearchBar.jsx";
-import HistoryPanel from "./components/HistoryPanel/HistoryPanel.jsx";
-import WeatherForecast from "./components/WeatherForecast/WeatherForecast.jsx";
+import MainPage from "./components/MainPage/MainPage.jsx";
 import { LoadScript } from "@react-google-maps/api";
 
 import { fetchWeather, fetchForecast } from "./api.js";
@@ -119,39 +116,21 @@ function App() {
             <Route
               path="/"
               element={
-                <>
-                  <div className="layoutForecast">
-                    <WeatherForecast forecast={forecast} isVisible={isForecastVisible} />
-                  </div>
-                  <SearchBar onSelectLocation={handleMapAndSearchbarLocationSelect} />
-                  <Map
-                    center={center}
-                    onSelect={handleMapAndSearchbarLocationSelect}
-                    selectedPosition={selectedPosition}
-                    setSelectedPosition={setSelectedPosition}
-                    weather={weather}
-                  />
-                  <div className="controlsBtnShow">
-                    <button
-                      className="controlsBtnShow__showAndHidForecast"
-                      onClick={handleToggleForecast}
-                    >
-                      {isForecastVisible ? "Hide Forecast" : "Show Forecast"}
-                    </button>
-                    <button
-                      className="controlsBtnShow__showAndHideHistory"
-                      onClick={handleToggleHistory}
-                    >
-                      {isHistoryVisible ? "Hide History" : "Show History"}
-                    </button>
-                  </div>
-                  <HistoryPanel
-                    history={history}
-                    onDelete={deleteHistory}
-                    onSelect={handleHistoryLocationSelect}
-                    isVisible={isHistoryVisible}
-                  />
-                </>
+                <MainPage
+                  center={center}
+                  selectedPosition={selectedPosition}
+                  setSelectedPosition={setSelectedPosition}
+                  weather={weather}
+                  forecast={forecast}
+                  history={history}
+                  isForecastVisible={isForecastVisible}
+                  isHistoryVisible={isHistoryVisible}
+                  handleMapAndSearchbarLocationSelect={handleMapAndSearchbarLocationSelect}
+                  handleToggleForecast={handleToggleForecast}
+                  handleToggleHistory={handleToggleHistory}
+                  handleHistoryLocationSelect={handleHistoryLocationSelect}
+                  deleteHistory={deleteHistory}
+                />
               }
             />
           </Routes>
