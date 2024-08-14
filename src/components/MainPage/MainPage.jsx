@@ -40,12 +40,14 @@ export default function MainPage({
           {isHistoryVisible ? "Hide History" : "Show History"}
         </button>
       </div>
-      <HistoryPanel
-        history={history}
-        onDelete={deleteHistory}
-        onSelect={handleHistoryLocationSelect}
-        isVisible={isHistoryVisible}
-      />
+      {isHistoryVisible && (
+        <HistoryPanel
+          history={history}
+          onDelete={deleteHistory}
+          onSelect={handleHistoryLocationSelect}
+          isVisible={isHistoryVisible}
+        />
+      )}
     </>
   );
 }
