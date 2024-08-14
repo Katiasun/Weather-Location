@@ -3,13 +3,7 @@ import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import styles from "./styles.module.css";
 
 export default function SearchBar({ onSelectLocation }) {
-  const {
-    ready,
-    value,
-    suggestions: { status, data },
-    setValue,
-    clearSuggestions,
-  } = usePlacesAutocomplete();
+  const { ready, value, setValue, clearSuggestions } = usePlacesAutocomplete();
 
   // Address selection processing function to get the geocode and call onSelectLocation
   async function handleSelect(address) {
