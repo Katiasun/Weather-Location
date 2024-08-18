@@ -3,9 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .App {
   position: relative;
 }
+
 .controlsBtnShow {
   display: flex;
   justify-content: center;
@@ -14,8 +16,9 @@
   left: 2%;
   top: 11%;
 }
-.showAndHideHistory,
-.showAndHidForecast {
+
+.controlsBtnShow__showAndHidForecast,
+.controlsBtnShow__showAndHideHistory {
   background-color: #0b58b1;
   color: rgb(252, 245, 242);
   border: none;
@@ -23,13 +26,8 @@
   padding: 10px 11px;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
   text-align: center;
   min-width: 120px;
-}
-
-.showAndHideBtn:hover {
-  right: 5px;
 }
 
 @media only screen and (min-width: 720px) {

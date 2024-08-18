@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { InfoWindow } from "@react-google-maps/api";
 import styles from "./WeatherTooltip.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleChevronDown, faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function WeatherTooltip({ position, weather, onClose }) {
   const [showDetails, setShowDetails] = useState(false);
@@ -12,12 +12,11 @@ export default function WeatherTooltip({ position, weather, onClose }) {
       const closeButton = document.querySelector(".gm-ui-hover-effect");
 
       if (closeButton) {
-        closeButton.style.fontSize = "16px";
-        closeButton.style.color = "#5f6368";
-        closeButton.style.width = "40px";
-        closeButton.style.height = "24px";
-        closeButton.style.border = "none";
+        closeButton.style.width = "36px";
         closeButton.style.cursor = "pointer";
+        closeButton.style.position = "absolute";
+        closeButton.style.top = "-6px";
+        closeButton.style.right = "2px";
 
         clearInterval(intervalId);
       }

@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./HistoryPanel.module.css";
 
-export default function HistoryPanel({ history, onDelete, onSelect, isVisible }) {
+export default function HistoryPanel({ history, onDelete, onSelect }) {
   return (
-    <div id={styles.showHide} className={isVisible ? styles.visible : styles.hidden}>
+    <div id={styles.showHide} className={styles.visible}>
       <h3 className={styles.historyTitle}>History</h3>
       <ul className={styles.historyList}>
         {history.map((point, index) => (
