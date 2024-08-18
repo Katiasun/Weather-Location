@@ -1,7 +1,7 @@
 {
   "name": "smart_event_planner",
   "version": "0.1.0",
-  "homepage": "https://katiasun.github.io/Weather-Location.io/",
+  "homepage": "https://katiasun.github.io/Weather-Location/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
