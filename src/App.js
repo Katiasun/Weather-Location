@@ -111,7 +111,7 @@ function App() {
       language={getBrowserLanguage()} //call the function here
     >
       <div className="App">
-        <Router>
+        <Router basename="/Weather-Location/">
           <Routes>
             <Route
               path="/"
