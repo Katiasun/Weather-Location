@@ -45,7 +45,9 @@ function App() {
 
         //Fetch the location label (city name)
         const label = await fetchLocationLabel(position);
-        updateHistory(position, label); // Add to history only if there is a label
+        if (label && label !== "Unknown location") {
+          updateHistory(position, label); // Add to history only if there is a label
+        }
       } catch (error) {
         console.error("Error updating weather data: ", error);
       }
@@ -76,14 +78,23 @@ function App() {
     setCenter(position);
     setSelectedPosition(position);
 
-    if (position) {
+    const cityExists = history.some((item) => item.label === label);
+
+    if (position && !cityExists && label && label !== "Unknown Location") {
       fetchWeather(position); // Query the weather for the selected position
       fetchForecast(position); // Request the weather forecast for the selected position
-      updateHistory(position, label); // Add to history only if there is a label
+      updateHistory(position, label); // Add to history only if there is a valid label
     }
+
+    // if (position) {
+    //   fetchWeather(position); // Query the weather for the selected position
+    //   fetchForecast(position); // Request the weather forecast for the selected position
+    //   updateHistory(position, label); // Add to history only if there is a label
+    // }
   }
 
   function updateHistory(position, label) {
+    if (!label || label === "Unlnown location") return; // Do not add to history if label is invalid
     const newHistoryItem = { ...position, label }; // Create a new story element
     const newHistory = [newHistoryItem, ...history]; // Add a new element to the beginning of the story
     setHistory(newHistory); // Update the history state
