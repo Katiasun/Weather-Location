@@ -2,6 +2,28 @@
 
 [Weather-Location](https://katiasun.github.io/Weather-Location/)
 
+## Planned Features
+
+- [ ] Compare Multiple Locations: Add a feature to compare weather conditions across multiple locations. This will allow users to view side-by-side comparisons of temperature, humidity, wind speed, and other weather parameters for better decision-making and regional climate analysis.
+
+- [ ] Weather Guessing Game: Implement a game where users guess the location based on weather data provided. Users will have three tries to find the correct location, and the game can be played solo or with friends to add a competitive element.
+
+- [ ] Improved Localization: Enhance the app's localization support by adding multiple languages and adapting the user interface to handle different regional settings, such as date formats and units of measurement. This will make the app more accessible to a global audience.
+
+- [ ] Refactor App to Use Redux: Refactor the app's state management to use Redux. This will centralize state management, reduce prop drilling, and improve the app's scalability and maintainability.
+
+- [ ] Modularize the Codebase: Break down the codebase into smaller, reusable components to improve maintainability and scalability. This modular approach will make the app more adaptable to future enhancements and easier for collaborative development.
+
+## Contributing
+
+We welcome contributions from the community! If you have ideas, suggestions, or improvements, feel free to open an issue or submit a pull request. Let's make this app better together!
+
+## Feedback
+
+Your feedback is invaluable to us. If you have any questions, suggestions, or comments, please don't hesitate to reach out or create an issue. We look forward to hearing from you!
+
+Stay tuned for these exciting updates and more as we continue to develop and improve the Weather App!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
